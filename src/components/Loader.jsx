@@ -1,5 +1,4 @@
-import React from 'react'
-import { RotatingLines } from 'react-loader-spinner'
+ import { RotatingLines } from 'react-loader-spinner'
 
 function Loader() {
   return (
