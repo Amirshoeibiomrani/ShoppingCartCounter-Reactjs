@@ -24,7 +24,7 @@ function ProductsPage() {
   };
   return (
     <>
-      <div className="flex">
+      <div>
         <input
           type="text"
           placeholder="Search ..."
