@@ -20,12 +20,12 @@ function Card({ data }) {
       <div className="flex items-center justify-between w-full">
         <Link
           to={`/products/${id}`}
-          className="cursor-pointer h-[25px] text-#fe5d42 text-[1.5rem]"
+          className="cursor-pointer h-[25px] text-[#fe5d42] text-[1.5rem]"
         >
           <TbListDetails />
         </Link>
         <div className="flex items-center">
-          <button className="bg-[#fe5d42] text-[#fff] border-none font-[1.7rem] h-8 w-8 leading-8 p-[2px] rounded-lg cursor-pointer">
+          <button className="bg-[#fe5d42] text-[#fff] border-none text-[1.7rem] h-8 w-8 leading-8 p-[2px] rounded-lg cursor-pointer">
             <TbShoppingBagCheck />
           </button>
         </div>
