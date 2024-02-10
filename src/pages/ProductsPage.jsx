@@ -1,18 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ImSearch } from "react-icons/im";
 import { FaListUl } from "react-icons/fa";
 
 import Card from "../components/Card";
 import Loader from "../components/Loader";
 import { useProducts } from "../context/ProductContext";
+import { filterProducts, searchProducts } from "../helper/helper";
 
 function ProductsPage() {
   const products = useProducts();
-
+  const [displayed, setDisplayed] = useState([]);
   const [search, setSearch] = useState("");
+  const [query, setQuery] = useState({});
+
+  useEffect(() => {
+    setDisplayed(products);
+  }, [products]);
+
+  useEffect(() => {
+    // console.log(query)
+    let finalProducts = searchProducts(products, query.search);
+    finalProducts = filterProducts(finalProducts, query.category);
+
+    //  console.log(finalProducts)
+
+    setDisplayed(finalProducts);
+  }, [query]);
 
   const searchHandler = () => {
-    console.log(search);
+    // console.log("Search");
+    setQuery((query) => ({ ...query, search }));
   };
 
   const categoryHandler = (event) => {
@@ -20,7 +37,8 @@ function ProductsPage() {
     // console.log(tagName)
     const category = event.target.innerText.toLowerCase();
     if (tagName != "LI") return;
-    console.log(category);
+    // console.log(category);
+    setQuery((query) => ({ ...query, category }));
   };
   return (
     <>
@@ -37,8 +55,8 @@ function ProductsPage() {
       </div>
       <div className="flex justify-between">
         <div className="flex flex-wrap justify-between w-full">
-          {!products.length && <Loader />}
-          {products.map((p) => (
+          {!displayed.length && <Loader />}
+          {displayed.map((p) => (
             <Card key={p.id} data={p} />
           ))}
         </div>
@@ -47,6 +65,7 @@ function ProductsPage() {
             <FaListUl />
             <p>Categories</p>
           </div>
+
           <ul onClick={categoryHandler}>
             <li>All</li>
             <li>Electronics</li>
