@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { ImSearch } from "react-icons/im";
-import { FaListUl } from "react-icons/fa";
 
 import Card from "../components/Card";
 import Loader from "../components/Loader";
 import { useProducts } from "../context/ProductContext";
-import { createQueryObject, filterProducts, searchProducts } from "../helper/helper";
+import { createQueryObject, filterProducts, getInitialQuery, searchProducts } from "../helper/helper";
 import { useSearchParams } from "react-router-dom";
+import SearchBox from "../components/SearchBox";
+import Sidebar from "../components/Sidebar";
 
 function ProductsPage() {
   const products = useProducts();
@@ -18,11 +18,14 @@ function ProductsPage() {
   
   useEffect(() => {
     setDisplayed(products);
+    setQuery(getInitialQuery(searchParams))
   }, [products]);
 
   useEffect(() => {
     // console.log(query)
     setSearchParams(query)
+    setSearch(query.search ||"")
+    
     let finalProducts = searchProducts(products, query.search);
     finalProducts = filterProducts(finalProducts, query.category);
 
@@ -36,29 +39,10 @@ function ProductsPage() {
     setQuery((query) => createQueryObject(query,{search: search}));
   };
 
-  const categoryHandler = (event) => {
-    
-    const { tagName } = event.target;
-    // console.log(tagName)
-    const category = event.target.innerText.toLowerCase();
-    
-    if (tagName != "LI") return;
-    // console.log(category);
-    setQuery((query) => createQueryObject(query,{category}));
-  }
+
   return (
     <>
-      <div>
-        <input
-          type="text"
-          placeholder="Search ..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value.toLowerCase().trim())}
-        />
-        <button onClick={searchHandler}>
-          <ImSearch />
-        </button>
-      </div>
+      <SearchBox search={search} setSearch={setSearch} setQuery={setQuery} />
       <div className="flex justify-between">
         <div className="flex flex-wrap justify-between w-full">
           {!displayed.length && <Loader />}
@@ -66,20 +50,7 @@ function ProductsPage() {
             <Card key={p.id} data={p} />
           ))}
         </div>
-        <div>
-          <div>
-            <FaListUl />
-            <p>Categories</p>
-          </div>
-
-          <ul onClick={categoryHandler}>
-            <li>All</li>
-            <li>Electronics</li>
-            <li>Jewelery</li>
-            <li>Men's Clothing</li>
-            <li>Women's Clothing</li>
-          </ul>
-        </div>
+    <Sidebar setQuery={setQuery}/>
       </div>
     </>
   );
