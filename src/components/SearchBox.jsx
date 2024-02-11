@@ -7,14 +7,14 @@ function SearchBox({search,setSearch,setQuery}) {
         setQuery((query) => createQueryObject(query,{search: search}));
       };
   return (
-<div>
+<div className="mt-0 mr-2.5 mb-[50px]">
         <input
           type="text"
           placeholder="Search ..."
           value={search}
-          onChange={(e) => setSearch(e.target.value.toLowerCase().trim())}
+          onChange={(e) => setSearch(e.target.value.toLowerCase().trim())} className="border-2 border-dashed border-[#fe5d42] p-2.5 w-[250px] text-[0.9rem ] text-[#fe5d42] rounded-[10px] mr-2.5 focus:outline-none  "
         />
-        <button onClick={searchHandler}>
+        <button onClick={searchHandler} className="p-2.5 text-[1rem] bg-[#fe5d42] text-[#fff] border-none rounded-[10px] cursor-pointer">
           <ImSearch />
         </button>
       </div>  )

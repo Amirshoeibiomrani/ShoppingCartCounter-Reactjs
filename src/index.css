@@ -15,3 +15,8 @@
     text-align: center;
     margin: 0 10px;
   } */
+
+  .selected{background: #f7753d49;
+  color: #fe5d42;
+  border-radius: 10px;
+  }
