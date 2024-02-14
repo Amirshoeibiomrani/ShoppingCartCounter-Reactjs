@@ -30,5 +30,10 @@ const useProducts = () => {
   return products;
 };
 
+const useProductDetails = (id) => {
+  const products = useContext(ProductContext);
+  const result = products.find((product) => product.id == id);
+  return result;
+};
 export default ProductProvider;
-export { useProducts };
+export { useProducts, useProductDetails };
