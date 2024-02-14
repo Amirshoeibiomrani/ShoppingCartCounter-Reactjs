@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
 import { TbListDetails, TbShoppingBagCheck } from "react-icons/tb";
 import { shortenText } from "../helper/helper";
-import {useCart} from "../contexts/cartContext"
+import {useCart} from "../context/CartContext"
 
 function Card({ data }) {
   const { id, title, image, price } = data;
 
   const [state, dispatch] = useCart();
+console.log(state)
 
   const clickHandler = () => {
-    dispatch({ type: "add", payload: data });
+    dispatch({ type: "ADD_ITEM", payload: data });
   };
+   
   return (
     <div className="w-[270px] m-[10px] p-5 flex flex-col justify-end items-start bg-[#fff]  rounded-[20px] border-dashed border-[#e2e2e2] border-2">
       <img
