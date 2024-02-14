@@ -1,4 +1,6 @@
 import { Routes, Navigate, Route } from "react-router-dom";
+
+import Layout from "./layout/Layout";
 import ProductsPage from "./pages/ProductsPage";
 import DetailsPage from "./pages/DetailsPage";
 import PageNotFound from "./pages/404";
@@ -8,8 +10,10 @@ import CartProvider from "./context/CartContext";
 
 function App() {
   return (
+    
     <CartProvider>
       <ProductsProvider>
+      <Layout>
         <Routes>
           <Route index element={<Navigate to="/products" replace />} />
           <Route path="/products" element={<ProductsPage />} />
@@ -17,6 +21,7 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/*" element={<PageNotFound />} />
         </Routes>
+    </Layout>
       </ProductsProvider>
     </CartProvider>
   );
