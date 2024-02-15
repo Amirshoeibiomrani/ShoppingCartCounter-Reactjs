@@ -1,17 +1,24 @@
-import BasketCard from '../components/BasketCard';
-import {useCart} from '../context/CartContext';
- 
-function CheckoutPage() {
-  const [state,dispatch]= useCart()
+import BasketCard from "../components/BasketCard";
+import { useCart } from "../context/CartContext";
 
-  const clickHandler = (type,payload)=>dispatch({type,payload})
+function CheckoutPage() {
+  const [state, dispatch] = useCart();
+
+  const clickHandler = (type, payload) => dispatch({ type, payload });
 
   return (
-    <div><div className="">{state.selectedItems.map((product)=>(
-      <BasketCard key={product.id } data={product }  clickHandler={clickHandler/>
-    ))}
-      </div></div>
-  )
+    <div>
+      <div className="">
+        {state.selectedItems.map((product) => (
+          <BasketCard
+            key={product.id}
+            data={product}
+            clickHandler={clickHandler}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export default CheckoutPage
+export default CheckoutPage;
