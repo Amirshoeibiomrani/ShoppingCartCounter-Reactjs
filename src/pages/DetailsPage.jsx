@@ -6,8 +6,11 @@ import { IoMdPricetag } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa";
 
 function DetailsPage() {
-  const { id } = useParams();
 
+  // baraye gereftan ettlae mahsul bayad id mahsul ro begirim  
+  const { id } = useParams();
+  
+// Baraye tabdil meghdar string be number >>> +id
   const productDetails = useProductDetails(+id);
 
   if (!productDetails) return <Loader />;
