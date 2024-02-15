@@ -17,7 +17,7 @@ function DetailsPage() {
 
   return (
     <div className="flex items-start min-h-[1000px] w-full">
-      <img className="w-[300px ] px-[15px] py-[25px] bg-[#fff] border-2 border-dashed border-[#fe5d42] rounded-[50px] m-2.5 mr-[50px]" src={productDetails.image} alt={productDetails.title} />
+      <img className="w-[300px ] py-[15px] px-[25px] bg-[#fff] border-2 border-dashed border-[#fe5d42] rounded-[50px] m-2.5 mr-[50px]" src={productDetails.image} alt={productDetails.title} />
       <div className="w-full border-[#e2e2e2] border-2 border-dashed m-2.5 p-[25px] rounded-[50px] ">
         
       <h3 className="text-[#fe5d42] text-[1.5rem] mb-10 ">{productDetails.title}</h3>
@@ -32,7 +32,7 @@ function DetailsPage() {
           {productDetails.price} $
         </span>
         
-        <Link to="/products" className="flex items-center bg-[#fe5d42] px-[5px] py-[10px] text-[#fff] rounded-[12px]">
+        <Link to="/products" className="flex items-center bg-[#fe5d42] py-[5px] px-[10px] text-[#fff] rounded-[12px]">
           <FaArrowLeft className="mr-2.5"/>
           <span>Back to Shop</span>
         </Link>
