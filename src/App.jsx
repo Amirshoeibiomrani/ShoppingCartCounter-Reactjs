@@ -24,7 +24,7 @@ function App() {
     </Layout>
       </ProductsProvider>
     </CartProvider>
-  );
+  );j
 }
 
 export default App;
