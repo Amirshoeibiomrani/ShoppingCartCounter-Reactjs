@@ -9,16 +9,16 @@ function CheckoutPage() {
 
   if(!state.itemsCounter){
     return(
-      <div>
+      <div className="flex justify-between items-start p-2.5 min-h-[1000px]">
       <p>Empty</p>
 
       </div>
     )
   }
   return (
-    <div>
+    <div className="flex justify-between items-start p-2.5 min-h-[1000px]">
       <BasketSideBar state={state} />
-      <div className="">
+      <div className="w-full">
         {state.selectedItems.map((product) => (
           <BasketCard
             key={product.id}
