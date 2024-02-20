@@ -3,26 +3,22 @@ import { TbListDetails, TbShoppingBagCheck } from "react-icons/tb";
 import { MdDeleteOutline } from "react-icons/md";
 
 import { productQuantity, shortenText } from "../helper/helper";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, decrease, increase, removeItem } from "../features/cart/cartSlice";
 
-// import { useCart } from "../context/CartContext";
-
+ 
 function Card({ data }) {
   const { id, title, image, price } = data;
 
-  // const [state, dispatch] = useCart();
+ const state=useSelector((store)=>store.cart)
 
-  // console.log(state);
+ const dispatch= useDispatch()
+// console.log(state)
 
-  // quantity= Tedad Mahsul
-  // const quantity = productQuantity(state, id);
-  // console.log(quantity);
-
-  const quantity = 0
+  const quantity = productQuantity(state,id)
 
 
-  const clickHandler = (type) => {
-    // dispatch({ type, payload: data });
-  };
+ 
 
   return (
     <div className="w-[270px] m-[10px] p-5 flex flex-col justify-end items-start bg-[#fff]  rounded-[20px] border-dashed border-[#e2e2e2] border-2">
@@ -46,7 +42,7 @@ function Card({ data }) {
         <div className="flex items-center">
           {quantity == 1 && (
             <button
-              onClick={() => clickHandler("REMOVE_ITEM")}
+              onClick={() => dispatch(removeItem(data))}
               className="bg-[#fe5d42] text-[#fff] border-none text-[1.7rem] h-8 w-8 leading-8 p-[4px] rounded-lg cursor-pointer"
             >
               <MdDeleteOutline />
@@ -54,7 +50,7 @@ function Card({ data }) {
           )}
           {quantity > 1 && (
             <button
-              onClick={() => clickHandler("DECREASE")}
+              onClick={() => dispatch(decrease(data))}
               className="bg-[#fe5d42] text-[#fff] border-none text-[1.7rem] h-8 w-8 leading-8 p-[4px] rounded-lg cursor-pointer"
             >
               -
@@ -63,14 +59,14 @@ function Card({ data }) {
           {!!quantity && <span className="w-5 text-center my-2.5 mx-0">{quantity}</span>}
           {quantity == 0 ? (
             <button
-              onClick={() => clickHandler("ADD_ITEM")}
+              onClick={() => dispatch(addItem(data))}
               className="bg-[#fe5d42] text-[#fff] border-none text-[1.7rem] h-8 w-8 leading-8 p-[4px] rounded-lg cursor-pointer"
             >
               <TbShoppingBagCheck />
             </button>
           ) : (
             <button
-              onClick={() => clickHandler("INCREASE")}
+              onClick={() => dispatch(increase(data))}
               className="bg-[#fe5d42] text-[#fff] border-none text-[1.7rem] h-8 w-8 leading-8 p-[4px] rounded-lg cursor-pointer"
             >
               +
