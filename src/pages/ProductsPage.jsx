@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useSelector,useDispatch } from "react-redux";
 
 import Card from "../components/Card";
 import Loader from "../components/Loader";
 import { createQueryObject, filterProducts, getInitialQuery, searchProducts } from "../helper/helper";
 import SearchBox from "../components/SearchBox";
 import Sidebar from "../components/Sidebar";
-// import { useProducts } from "../context/ProductContext";
-
+import { fetchProducts } from "../features/product/productSlice";
+import store from "../app/store";
+ 
 function ProductsPage() {
-  // const products = useProducts();
-  const products = []
-  
+   const dispatch = useDispatch()
+  const {products, loading} = useSelector((store) => store.product)
+ 
+   
   const [displayed, setDisplayed] = useState([]);
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState({});
@@ -22,6 +25,11 @@ function ProductsPage() {
     setDisplayed(products);
     setQuery(getInitialQuery(searchParams))
   }, [products]);
+
+//dar faz Mounting ejra beshe
+  useEffect(()=>{
+    dispatch(fetchProducts())
+  },[])
 
   useEffect(() => {
     // console.log(query)
@@ -47,7 +55,7 @@ function ProductsPage() {
       <SearchBox search={search} setSearch={setSearch} setQuery={setQuery} />
       <div className="flex justify-between">
         <div className="flex flex-wrap justify-between w-full">
-          {!displayed.length && <Loader />}
+          {loading && <Loader />}
           {displayed.map((p) => (
             <Card key={p.id} data={p} />
           ))}
