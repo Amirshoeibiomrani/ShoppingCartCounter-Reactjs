@@ -18,7 +18,7 @@ function DetailsPage() {
   useEffect(()=>{
     dispatch(fetchProducts())
   },[])
-  
+       
 // Baraye tabdil meghdar string be number >>> +id
   const productDetails = useSelector(store=>store.product.products.find(i => i.id == +id))
 
