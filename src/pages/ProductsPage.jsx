@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import Card from "../components/Card";
 import Loader from "../components/Loader";
-import { useProducts } from "../context/ProductContext";
 import { createQueryObject, filterProducts, getInitialQuery, searchProducts } from "../helper/helper";
-import { useSearchParams } from "react-router-dom";
 import SearchBox from "../components/SearchBox";
 import Sidebar from "../components/Sidebar";
+// import { useProducts } from "../context/ProductContext";
 
 function ProductsPage() {
-  const products = useProducts();
+  // const products = useProducts();
+  const products = []
+  
   const [displayed, setDisplayed] = useState([]);
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState({});
