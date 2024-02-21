@@ -4,7 +4,7 @@ import {BsPatchCheck} from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 import { checkout } from '../features/cart/cartSlice'
 
-function BasketSideBar({state,clickHandler}) {
+function BasketSideBar({state}) {
   const dispatch = useDispatch()
 
   return (

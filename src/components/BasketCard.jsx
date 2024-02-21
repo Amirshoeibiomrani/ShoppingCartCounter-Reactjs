@@ -1,11 +1,10 @@
 import { useDispatch } from "react-redux";
 import { shortenText } from "../helper/helper";
 import { MdDeleteOutline } from "react-icons/md";
-import { data } from "autoprefixer";
-
+ 
 import {decrease,increase,removeItem} from "../features/cart/cartSlice"
 
-function BasketCard({ data, clickHandler }) {
+function BasketCard({ data }) {
 //comments:
   const { image, title, quantity } = data
 
@@ -16,17 +15,17 @@ function BasketCard({ data, clickHandler }) {
       <p>{shortenText(title)}</p>
       <div className="flex items-center">
         {quantity == 1 && (
-          <button className="bg-[#fe5d42] text-[#fff] border-none text-[1.3rem] h-[25px] w-[25px] leading-[25px] p-2 rounded-lg cursor-pointer" onClick={() => dispatch(removeItem(data))}>
+          <button className="bg-[#fe5d42] text-[#fff] border-none text-[1.3rem] h-[25px] w-[25px] leading-[25px] p-4 rounded-lg cursor-pointer" onClick={() => dispatch(removeItem(data))}>
             <MdDeleteOutline />
           </button>
         )}
 
         {quantity > 1 && (
-          <button className="bg-[#fe5d42] text-[#fff] border-none text-[1.3rem] h-[25px] w-[25px] leading-[25px] p-2 rounded-lg cursor-pointer" onClick={() => dispatch(decrease(data))}>-</button>
+          <button className="bg-[#fe5d42] text-[#fff] border-none text-[1.3rem] h-[25px] w-[25px] leading-[25px] p-4 rounded-lg cursor-pointer" onClick={() => dispatch(decrease(data))}>-</button>
         )} 
 
         <span className="w-5 mx-2 my-0 text-center">{quantity}</span>
-        <button className="bg-[#fe5d42] text-[#fff] border-none text-[1.3rem] h-[25px] w-[25px] leading-[25px] p-2 rounded-lg cursor-pointer" onClick={() => dispatch(increase(data))}>+</button>
+        <button className="bg-[#fe5d42] text-[#fff] border-none text-[1.3rem] h-[25px] w-[25px] leading-[25px] p-4 rounded-lg cursor-pointer" onClick={() => dispatch(increase(data))}>+</button>
       </div>
     </div>
   );

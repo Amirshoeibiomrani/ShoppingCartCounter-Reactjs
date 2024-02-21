@@ -13,8 +13,7 @@ function Card({ data }) {
  const state=useSelector((store)=>store.cart)
 
  const dispatch= useDispatch()
-// console.log(state)
-
+ 
   const quantity = productQuantity(state,id)
 
 
@@ -32,7 +31,7 @@ function Card({ data }) {
       <p className="text-[#666] text-[0.9rem] font-[600] mt-2.5 mr-0 mb-[30px] ">
         {price} $
       </p>
-      <div className="flex items-center justify-between w-full">
+      <div className="flex items-center justify-between w-full ">
         <Link
           to={`/products/${id}`}
           className="cursor-pointer h-[25px] text-[#fe5d42] text-[1.5rem]"
@@ -43,7 +42,7 @@ function Card({ data }) {
           {quantity == 1 && (
             <button
               onClick={() => dispatch(removeItem(data))}
-              className="bg-[#fe5d42] text-[#fff] border-none text-[1.7rem] h-8 w-8 leading-8 p-[4px] rounded-lg cursor-pointer"
+              className="bg-[#fe5d42] text-[#fff] border-none text-[1.7rem] h-8 w-8 leading-8 p-[2px] rounded-lg cursor-pointer text-center"
             >
               <MdDeleteOutline />
             </button>
@@ -51,7 +50,7 @@ function Card({ data }) {
           {quantity > 1 && (
             <button
               onClick={() => dispatch(decrease(data))}
-              className="bg-[#fe5d42] text-[#fff] border-none text-[1.7rem] h-8 w-8 leading-8 p-[4px] rounded-lg cursor-pointer"
+              className="bg-[#fe5d42] text-[#fff] border-none text-[1.7rem] h-8 w-8 leading-8 p-[2px] rounded-lg cursor-pointer text-center"
             >
               -
             </button>
@@ -60,14 +59,14 @@ function Card({ data }) {
           {quantity == 0 ? (
             <button
               onClick={() => dispatch(addItem(data))}
-              className="bg-[#fe5d42] text-[#fff] border-none text-[1.7rem] h-8 w-8 leading-8 p-[4px] rounded-lg cursor-pointer"
+              className="bg-[#fe5d42] text-[#fff] border-none text-[1.7rem] h-8 w-8 leading-8 p-[2px] rounded-lg cursor-pointer text-center"
             >
               <TbShoppingBagCheck />
             </button>
           ) : (
             <button
               onClick={() => dispatch(increase(data))}
-              className="bg-[#fe5d42] text-[#fff] border-none text-[1.7rem] h-8 w-8 leading-8 p-[4px] rounded-lg cursor-pointer"
+              className="bg-[#fe5d42] text-[#fff] border-none text-[1.7rem] h-8 w-8 leading-8 p-[2px] rounded-lg cursor-pointer text-center "
             >
               +
             </button>
