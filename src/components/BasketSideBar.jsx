@@ -24,7 +24,7 @@ function BasketSideBar({state,clickHandler}) {
         <p>Status:</p>
         <span className='text-gray-600 ml-2.5'>{!state.checkout && "Pending... "}</span>
         </div>  
-        <button onClick={()=>dispatch(checkout())} className="w-full mt-10 bg-[#fe5d42] text-[#fff] border-none text-[1.1rem] p-[5px] rounded-[10px] cursor-pointer">Checkout</button>
+        <button onClick={()=>dispatch(checkout( ))} className="w-full mt-10 bg-[#fe5d42] text-[#fff] border-none text-[1.1rem] p-[5px] rounded-[10px] cursor-pointer">Checkout</button>
     </div>
   )
 }

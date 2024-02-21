@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
+import { useSelector } from "react-redux";
 
 // import { useCart } from "../context/CartContext";
 
 function Layout({ children }) {
-  // const [state] = useCart();
+const state = useSelector((store)=>store.cart) 
   return (
     <>
       <header className="flex items-center justify-between bg-[#fe5d42] text-[#fff] py-2.5 px-5 mt-0 mr-2.5 mb-[60px] rounded-[10px]">
