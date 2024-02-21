@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import BasketCard from "../components/BasketCard";
 import BasketSideBar from "../components/BasketSideBar";
-// import { useCart } from "../context/CartContext";
-
+ 
 function CheckoutPage() {
  const state = useSelector((store)=>store.cart)
 
@@ -17,13 +16,13 @@ function CheckoutPage() {
   }
   return (
     <div className="flex justify-between items-start p-2.5 min-h-[1000px]">
-      <BasketSideBar state={state}   />
+      <BasketSideBar state={state}     />
       <div className="w-full">
         {state.selectedItems.map((product) => (
           <BasketCard
             key={product.id}
             data={product}  
-            clickHandler={clickHandler}
+           
           />
         ))}
       </div>
