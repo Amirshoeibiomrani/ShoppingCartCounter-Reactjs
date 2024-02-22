@@ -11,8 +11,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 function App() {
   return (
     
-    // <CartProvider>
-    //   <ProductsProvider>
+ 
       <Layout>
         <Routes>
           <Route index element={<Navigate to="/products" replace />} />
@@ -22,8 +21,7 @@ function App() {
           <Route path="/*" element={<PageNotFound />} />
         </Routes>
     </Layout>
-    //   </ProductsProvider>
-    // </CartProvider>
+  
   );j
 }
 
